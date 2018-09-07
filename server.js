@@ -13,6 +13,6 @@ let server = http.createServer((req, res)=>{
 	}else{
 		 res.end('404 not found');
 	}
-}).listen('9001',function (){
-     console.log('9001 start work');
+}).listen('9002',function (){
+     console.log('9002 start work');
 });
