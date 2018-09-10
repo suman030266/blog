@@ -11,7 +11,7 @@ let server = http.createServer((req, res)=>{
 		};
 		res.end(JSON.stringify(obj));
 	}else{
-		 res.end('404 not found');
+		 res.end(`url is ${req.url}`);
 	}
 }).listen('9002',function (){
      console.log('9002 start work');
