@@ -1,18 +1,23 @@
-const http = require('http');
-const fs = require('fs');
-const url = require('url');
+const express = require('express'),
+    expressStatic = require('express-static'),
+    bodyParser = require('body-parser'),
+    fs = require('fs');
+let port = 9002,
+    app = express();
 
-let server = http.createServer((req, res)=>{
-	let {pathname, query} = url.parse(req.url, true);
-	if(pathname == '/api/getData'){
-		let obj = {
-			data: 'datas',
-			code: 0
-		};
-		res.end(JSON.stringify(obj));
-	}else{
-		 res.end(`url is ${req.url}`);
-	}
-}).listen('9002',function (){
-     console.log('9002 start work');
+// 解析body数据
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+//设置静态文件地址
+app.use(expressStatic(`${__dirname}/www`));
+
+app.all(`*`, (req, res)=>{
+    res.send(`sorry, 您访问的资源不存在`);
 });
+
+app.listen(port, ()=>{
+    console.log(`server is startd at ${port}`);
+});
+

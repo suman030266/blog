@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/suman030266/blog/issues"
   },
-  "homepage": "https://github.com/suman030266/blog#readme"
+  "homepage": "https://github.com/suman030266/blog#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-static": "^1.2.5"
+  }
 }
