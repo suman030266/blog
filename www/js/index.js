@@ -1,10 +1,6 @@
-document.addEventListener('touchstart touchmove', function(event) {
-    if (event.cancelable) {
-        if (!event.defaultPrevented) {
-            event.preventDefault();
-        }
-    }
-}, false);
+$(document).on('touchstart touchmove', function(e) {
+    e.preventDefault();
+});
 let cubeRender = (function ($) {
     let $cubeBox = $('.cubeBox'),
         $box = $cubeBox.find('.box');
