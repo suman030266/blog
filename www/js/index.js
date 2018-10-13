@@ -63,9 +63,9 @@ let cubeRender = (function ($) {
 
             //=>每一个页面的点击操作
             $box.find('li').tap(function () {
-                $cubeBox.css('display', 'none');
-                let index = $(this).index();
-                detailRender.init(index);
+                // $cubeBox.css('display', 'none');
+                // let index = $(this).index();
+                // detailRender.init(index);
             });
         }
     }

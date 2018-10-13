@@ -11,27 +11,22 @@
     <meta name="x5-page-mode" content="no-title"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <script>
-        ~function () {
-            let computed = function () {
-                let desW = 640;
-                let devW = document.documentElement.clientWidth;
-                if (devW >= 640) {
-                    return document.documentElement.style.fontSize = '100px';
-                }
-                document.documentElement.style.fontSize = devW / desW * 100 + 'px';
-            };
-            computed();
-            window.addEventListener('resize', computed, false);
-        }();
-    </script>
 </head>
 <body>
     <main class="mainBox">
         <section class="cubeBox">
             <ul class="box">
-                <li>
-                    <a href="#"><img src="img/cube/cube1.png" alt=""></a>
+                <li style="background-color: red;">
+                    <a href="/pro-intro.html">
+                      <!-- <img src="img/cube/cube1.png" alt=""> -->
+                      专业介绍
+                    </a>
+                </li>
+                <li style="background-color: green;">
+                    <a href="/school-intro.html">
+                      <!-- <img src="img/cube/cube2.png" alt=""> -->
+                      学校简介
+                    </a>
                 </li>
                 <li>
                     <a href="#"><img src="img/cube/cube2.png" alt=""></a>
@@ -45,8 +40,11 @@
                 <li>
                     <a href="#"><img src="img/cube/cube5.png" alt=""></a>
                 </li>
-                <li>
-                    <a href="#"><img src="img/cube/cube6.png" alt=""></a>
+                <li style="background-color: yellow;">
+                    <a href="/touch-us.html">
+                      <!-- <img src="img/cube/cube6.png" alt=""> -->
+                      联系我们
+                    </a>
                 </li>
             </ul>
             <img src="img/cube/cube-tip.png" alt="" class="tip">
@@ -111,7 +109,7 @@
                         <img src="img/course/course6.png" alt="">
                         <img src="img/course/course.png" alt="">
                     </div>
-    
+
                     <div class="swiper-slide page3">
                         <h2>333</h2>
                     </div>
@@ -128,7 +126,7 @@
             </div>
         </section>
     </main>
-    <!-- <script src="/js/rem.js"></script> -->
+    <script src="js/rem.js"></script>
     <script src="js/zepto.min.js"></script>
     <script src="js/swiper.min.js"></script>
     <script src="js/makisu.min.js"></script>
