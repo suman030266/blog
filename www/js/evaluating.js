@@ -65,7 +65,7 @@ let slides = (wrap, curNum) => {
 		transform,
 		transformLength,
 		slideTransformArr = [0, 45, 90, 135, 180, 225, 270, 315],
-		swiperSlide = document.getElementsByClassName('swiper-slide');
+		swiperSlide = wrapper.getElementsByClassName('swiper-slide');
 
 	/**
 	* 滑动后轮播滚动效果
@@ -73,7 +73,7 @@ let slides = (wrap, curNum) => {
 	let touchEndScroll = callback => {
 
 		Array.prototype.forEach.call(swiperSlide, function (o, i) {
-
+			// console.log(o, i)
 			o.style.webkitTransform = `rotateY(${slideTransformArr[i] + num * 45}deg)`;
 		});
 
@@ -88,17 +88,27 @@ let slides = (wrap, curNum) => {
 		//if (!start) return;
 		start = false;
 		num --;
+		console.log(num)
+		if(num == -swiperSlide.length){
+			// num = 0;
+			return;
+		}
 		touchEndScroll();
 	}
 
 	/**
 	* 右滑动
 	*/
+	console.log(swiperSlide.length);
 	let rightHandlerEvent = () => {
 
 		//if (!start) return;
 		start = false;
 		num ++;
+		if(num == 1){
+			num = 0;
+			return;
+		}
 		touchEndScroll();
 	}
 
@@ -168,7 +178,7 @@ let slides = (wrap, curNum) => {
 		flag = true;
 		Array.prototype.forEach.call(swiperSlide, function (o, i) {
 
-			o.style.webkitTransform = `rotateY(${translateX[i] + xTotal}deg)`;
+			// o.style.webkitTransform = `rotateY(${translateX[i] + xTotal}deg)`;
 		});
 	}
 
@@ -231,7 +241,7 @@ let slides = (wrap, curNum) => {
 		$(".gearDate").hide();
 		$('#' + wrap.id).find('.swiper-slide').removeClass('active');
 		$('#' + wrap.id).find('.swiper-slide').eq( -num%8 ).addClass('active');
-		var index=$("#slides").find(".swiper-slide.active").attr("data-id");
+		var index=$("#"+ wrap.id).find(".swiper-slide.active").attr("data-id");
 		if(index==1){
 			$("#activedSted").removeClass().addClass("active1");
 			$(".step-btn").hide();
@@ -244,7 +254,7 @@ let slides = (wrap, curNum) => {
 		}else{
 			$(".step-btn").show();
 			$("#activedSted").removeClass().addClass("active4");
-			if($('.swiper-slide1').find("li.active").length==1 && $('#picktime').val()!="" && $('.swiper-slide3').find("li.active").length==1  && $('.swiper-slide4').find("li.active").length==1){
+			if($('#'+ wrap.id +' .swiper-slide1').find("li.active").length==1 && $('#picktime').val()!="" && $('.swiper-slide3').find("li.active").length==1  && $('.swiper-slide4').find("li.active").length==1){
 			$("#activedSted").removeClass().addClass("active5")
 			$(".step-btn").find("button").removeClass("disabled");
 		}
@@ -267,48 +277,28 @@ let slides = (wrap, curNum) => {
 }
 
 $(function () {
-	window.fnc = slides;
-
+	// window.fnc = slides;
+	var preIndex = 0;
+	var aBtn = $('.tab-btn span');
+	var aDiv = $('.swiper-container .swiper-wrapper');
+	for(let i = 0; i < aBtn.length; i++){
+		(function (index){aBtn[i].onclick = ()=>{
+		if(index === preIndex)return;
+			aBtn[preIndex].className = '';
+			aDiv[preIndex].className = 'swiper-wrapper';
+			aBtn[index].className = 'on';
+			aDiv[index].className = 'swiper-wrapper on';
+			preIndex = index;
+		}})(i);
+	}
+	
 	slides({
-		id: 'slides'
+		id: 'slides1'
 	}, 0);
-	$('.swiper-slide3 li').on('click', function () {
-		$(this).closest('ul').find('li').removeClass('active');
-		$(this).addClass('active');
-		setTimeout(function () {
-			//
-			$('.swiper-slide1').css('webkitTransform', 'rotateY(-135deg)');
-			$('.swiper-slide2').css('webkitTransform', 'rotateY(-90deg)');
-			$('.swiper-slide3').css('webkitTransform', 'rotateY(-45deg)');
-			$('.swiper-slide4').css('webkitTransform', 'rotateY(0deg)');
-			slides({
-				id: 'slides'
-			}, -3);
-		}, 500);
-	});
-
-	$('.swiper-slide4 li').on('click', function () {
-		$(this).closest('ul').find('li').removeClass('active');
-		$(this).addClass('active');
-		if($('.swiper-slide1').find("li.active").length==1 && $('#picktime').val()!="" && $('.swiper-slide3').find("li.active").length==1){
-			$("#activedSted").removeClass().addClass("active5")
-			$(".step-btn").find("button").removeClass("disabled");
-		}
-	});
-	$('.swiper-slide1 li').on('click', function () {
-		$(this).closest('ul').find('li').removeClass('active');
-		$(this).addClass('active');
-		$(this).find("input").prop('checked',true);
-		setTimeout(function () {
-			$('.swiper-slide1').css('webkitTransform', 'rotateY(-45deg)');
-			$('.swiper-slide2').css('webkitTransform', 'rotateY(-0deg)');
-			$('.swiper-slide3').css('webkitTransform', 'rotateY(45deg)');
-			$('.swiper-slide4').css('webkitTransform', 'rotateY(90deg)');
-			slides({
-			id: 'slides'
-			}, -1);
-		}, 500);
-		
-	});
-
+	slides({
+		id: 'slides2'
+	}, 0);
+	slides({
+		id: 'slides3'
+	}, 0);
 });

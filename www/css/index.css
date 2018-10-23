@@ -4429,8 +4429,11 @@ html,body {
 .profession{
   padding-bottom: .5rem;
 }
-.profession > ul{
-
+.profession > ul >li{
+    display: none;
+}
+.profession > ul >li.on{
+    display: block;
 }
 .profession .pro-item{
   margin-top: .3rem;

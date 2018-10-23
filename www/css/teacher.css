@@ -2,12 +2,17 @@ body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,button,input,textarea,t
     margin: 0;
     padding: 0
 }
-
+html{
+    height: 100%;
+}
 body {
     font-size: 12px;
     font-style: normal;
     color: #333;
-    font-family: "\5FAE\8F6F\96C5\9ED1",Helvetica,sans-serif
+    font-family: "\5FAE\8F6F\96C5\9ED1",Helvetica,sans-serif;
+    background: url(/img/cube/bg2.jpg) left bottom no-repeat;
+    background-size: contain;
+    height: 100%;
 }
 
 small {
@@ -342,17 +347,51 @@ body{
 }
 .swiper-container,
 .swiper-slide{
-    height: 5rem;
+    height: 5.5rem;
 }
 .swiper-slide{
     opacity: .6;
-    background-color: #ccc;
+    background-color: #468dbc;
+    border-radius: 8px;
+    text-align: center;
+    font-size: .17rem;
+    color: #fff;
 }
 .swiper-slide.active{
     opacity: 1;
 }
-.swiper-slide{
-    font-size: 30px;
+.swiper-slide h3{
+    padding-top: .12rem;
+    font-size: .33rem;
+    line-height: .86rem;
+    font-weight: normal;
+}
+.swiper-slide div{
+    line-height: .53rem;
+    font-size: .22rem;
+}
+.swiper-slide img{
+    width: 1.94rem;
+    height: 1.94rem;
+    border-radius: 50%;
+    margin-bottom: .12rem;
+}
+.swiper-slide p{
+    color: rgba(255, 255, 255, .7);
+    /* padding: 0 .34rem; */
+    line-height: .27rem;
+}
+.swiper-slide a{
+    width: 1.7rem;
+    height: .47rem;
+    line-height: .47rem;
+    font-size: .2rem;
+    background-color: #fff;
+    color: #468dbc;
+    display: inline-block;
+    border-radius: .235rem;
+    text-align: center;
+    margin-top: .59rem;
 }
 .tab-btn{
     text-align: center;
