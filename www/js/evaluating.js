@@ -1,4 +1,3 @@
-document.documentElement.style.fontSize = parseInt(document.documentElement.style.fontSize) * 1.7 + 'px';
 let slides = (wrap, curNum) => {
 
 	let options = $.extend({
@@ -89,17 +88,16 @@ let slides = (wrap, curNum) => {
 		start = false;
 		num --;
 		console.log(num)
-		if(num == -swiperSlide.length){
-			// num = 0;
-			return;
-		}
+		// if(num == -swiperSlide.length){
+		// 	// num = 0;
+		// 	return;
+		// }
 		touchEndScroll();
 	}
 
 	/**
 	* 右滑动
 	*/
-	console.log(swiperSlide.length);
 	let rightHandlerEvent = () => {
 
 		//if (!start) return;
@@ -171,7 +169,7 @@ let slides = (wrap, curNum) => {
 		touchStaus = false;
 		xTotal = parseInt(x*proportion);
 
-		if (xTotal > 0 && num == 0 || xTotal < 0 && num == -3) {
+		if (xTotal > 0 && num == 0 || xTotal < 0 && num == -(item.length - 1)) {
 			flag = false;
 			return;
 		}
@@ -186,54 +184,39 @@ let slides = (wrap, curNum) => {
 	* 滑动结束轮播图滚动
 	*/
 	let touchendTouchX = e => {
-
 		if (!flag) return;
 
 		//一次滑动结束
 		touchStaus = true;
 		endDate = + new Date();
-
-		
-
 		if(endDate - startDate > diff) {
-
 			//滑动的慢
 			if ((x/docWidth) < -0.2) {
-
-				
-
 				leftHandlerEvent();
 				return;
 			} else if ((x/docWidth) > 0.2) {
 				//if (num <= 0) return;
-
 				rightHandlerEvent();
 				return;
 			}
-			
 			Array.prototype.forEach.call(swiperSlide, function (o, i) {
-
 				o.style.webkitTransform = `rotateY(${translateX[i] + num}deg)`;
 			});
 		} else if ( 30 < (endDate - startDate) <= diff) {
-
 			if (touchY - e.changedTouches[0].pageY < 20 || touchY - e.changedTouches[0].pageY > -20) {
-
 				//滑动的快
 				release = e.changedTouches[0] && e.changedTouches[0].pageX;
 				if (release - touchX > distance) {
-
 					console.log(num, '--num---');
 					//if (num <= 0) return;
 
 					rightHandlerEvent();
 				} else if (touchX - release > distance) {
-					
-					
-
 					leftHandlerEvent();
 				}
 			}
+		}else{
+			console.log('234567')
 		}
 	}
 
@@ -242,24 +225,24 @@ let slides = (wrap, curNum) => {
 		$('#' + wrap.id).find('.swiper-slide').removeClass('active');
 		$('#' + wrap.id).find('.swiper-slide').eq( -num%8 ).addClass('active');
 		var index=$("#"+ wrap.id).find(".swiper-slide.active").attr("data-id");
-		if(index==1){
-			$("#activedSted").removeClass().addClass("active1");
-			$(".step-btn").hide();
-		}else if(index==2){
-			$("#activedSted").removeClass().addClass("active2");
-			$(".step-btn").hide();
-		}else if(index==3){
-			$(".step-btn").hide();
-			$("#activedSted").removeClass().addClass("active3")
-		}else{
-			$(".step-btn").show();
-			$("#activedSted").removeClass().addClass("active4");
-			if($('#'+ wrap.id +' .swiper-slide1').find("li.active").length==1 && $('#picktime').val()!="" && $('.swiper-slide3').find("li.active").length==1  && $('.swiper-slide4').find("li.active").length==1){
-			$("#activedSted").removeClass().addClass("active5")
-			$(".step-btn").find("button").removeClass("disabled");
-		}
+		// if(index==1){
+		// 	$("#activedSted").removeClass().addClass("active1");
+		// 	$(".step-btn").hide();
+		// }else if(index==2){
+		// 	$("#activedSted").removeClass().addClass("active2");
+		// 	$(".step-btn").hide();
+		// }else if(index==3){
+		// 	$(".step-btn").hide();
+		// 	$("#activedSted").removeClass().addClass("active3")
+		// }else{
+		// 	$(".step-btn").show();
+		// 	$("#activedSted").removeClass().addClass("active4");
+		// 	if($('#'+ wrap.id +' .swiper-slide1').find("li.active").length==1 && $('#picktime').val()!="" && $('.swiper-slide3').find("li.active").length==1  && $('.swiper-slide4').find("li.active").length==1){
+		// 		$("#activedSted").removeClass().addClass("active5")
+		// 		$(".step-btn").find("button").removeClass("disabled");
+		// 	}
 			
-		}
+		// }
 	}
 
 	/**
@@ -282,14 +265,17 @@ $(function () {
 	var aBtn = $('.tab-btn span');
 	var aDiv = $('.swiper-container .swiper-wrapper');
 	for(let i = 0; i < aBtn.length; i++){
-		(function (index){aBtn[i].onclick = ()=>{
-		if(index === preIndex)return;
-			aBtn[preIndex].className = '';
-			aDiv[preIndex].className = 'swiper-wrapper';
-			aBtn[index].className = 'on';
-			aDiv[index].className = 'swiper-wrapper on';
-			preIndex = index;
-		}})(i);
+		(function (index){
+			aBtn[index].onclick = ()=>{
+				if(index === preIndex)return;
+				console.log(preIndex, index);
+				aBtn[preIndex].className = '';
+				aDiv[preIndex].className = 'swiper-wrapper';
+				aBtn[index].className = 'on';
+				aDiv[index].className = 'swiper-wrapper on';
+				preIndex = index;
+			}
+		})(i);
 	}
 	
 	slides({

@@ -378,8 +378,15 @@ body{
 }
 .swiper-slide p{
     color: rgba(255, 255, 255, .7);
-    /* padding: 0 .34rem; */
+    padding: 0 .34rem;
     line-height: .27rem;
+    text-align: left;
+    text-indent: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .swiper-slide a{
     width: 1.7rem;
