@@ -1,6 +1,6 @@
-let slides = (wrap, curNum) => {
+function slides(wrap, curNum){
 
-	let options = $.extend({
+	var options = $.extend({
 		//滚动容器
 		wrapper : document.getElementById(wrap.id),
 		//是否自动滚动
@@ -11,7 +11,7 @@ let slides = (wrap, curNum) => {
 		scrollWidth: document.getElementById(wrap.id).offsetWidth
 	}, wrap);
 
-	let wrapper = options.wrapper,
+	var wrapper = options.wrapper,
 		auto = options.auto,
 		speed = options.speed,
 		item = wrapper && wrapper.children,
@@ -69,7 +69,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 滑动后轮播滚动效果
 	*/
-	let touchEndScroll = callback => {
+	var touchEndScroll = callback => {
 
 		Array.prototype.forEach.call(swiperSlide, function (o, i) {
 			// console.log(o, i)
@@ -82,7 +82,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 左滑动
 	*/
-	let leftHandlerEvent = () => {
+	var leftHandlerEvent = () => {
 
 		//if (!start) return;
 		start = false;
@@ -98,7 +98,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 右滑动
 	*/
-	let rightHandlerEvent = () => {
+	var rightHandlerEvent = () => {
 
 		//if (!start) return;
 		start = false;
@@ -113,7 +113,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 滑动事件
 	*/
-	let swipe = () => {
+	var swipe = () => {
 
 		wrapper.addEventListener('touchstart', touchstartTouchX, false);
 		wrapper.addEventListener('touchmove', touchmoveTouchX, false);
@@ -123,7 +123,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 滑动开始
 	*/
-	let touchstartTouchX = e => {
+	var touchstartTouchX = e => {
 
 		startDate = + new Date();
 		touchX = e.touches[0] && e.touches[0].pageX;
@@ -131,14 +131,14 @@ let slides = (wrap, curNum) => {
 	}
 
 	//获取当前轮播图是否有值
-	let getCurVal = () => {
+	var getCurVal = () => {
 		
 	}
 
 	/**
 	* 获取轮播图translate
 	*/
-	let getTranslateX = () => {
+	var getTranslateX = () => {
 		
 		return slideTransformArr.map(function (item) {
 		  return item +  num * 45;
@@ -148,7 +148,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* touchmove轮播图移动
 	*/
-	let touchmoveTouchX = e => {
+	var touchmoveTouchX = e => {
 
 		//滑动位置
 		slowRelease = e.changedTouches[0] && e.changedTouches[0].pageX;
@@ -183,7 +183,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 滑动结束轮播图滚动
 	*/
-	let touchendTouchX = e => {
+	var touchendTouchX = e => {
 		if (!flag) return;
 
 		//一次滑动结束
@@ -220,7 +220,7 @@ let slides = (wrap, curNum) => {
 		}
 	}
 
-	let selectActive = () => {
+	var selectActive = () => {
 		$(".gearDate").hide();
 		$('#' + wrap.id).find('.swiper-slide').removeClass('active');
 		$('#' + wrap.id).find('.swiper-slide').eq( -num%8 ).addClass('active');
@@ -248,7 +248,7 @@ let slides = (wrap, curNum) => {
 	/**
 	* 轮播图初始化
 	*/
-	let init  = () => {
+	var init  = () => {
 
 		if (length <= 1) return;
 		//滑动事件绑定
@@ -264,7 +264,7 @@ $(function () {
 	var preIndex = 0;
 	var aBtn = $('.tab-btn span');
 	var aDiv = $('.swiper-container .swiper-wrapper');
-	for(let i = 0; i < aBtn.length; i++){
+	for(var i = 0; i < aBtn.length; i++){
 		(function (index){
 			aBtn[index].onclick = ()=>{
 				if(index === preIndex)return;

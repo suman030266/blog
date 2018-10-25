@@ -1,11 +1,11 @@
 $(document).on('touchstart touchmove', function(e) {
     e.preventDefault();
 });
-let cubeRender = (function ($) {
-    let $cubeBox = $('.cubeBox'),
+function cubeRender() {
+    var $cubeBox = $('.cubeBox'),
         $box = $cubeBox.find('.box');
-    let touchBegin = function (e) {
-        let point = e.changedTouches[0];
+    var touchBegin = function (e) {
+        var point = e.changedTouches[0];
         $(this).attr({
             strX: point.clientX,
             strY: point.clientY,
@@ -15,10 +15,10 @@ let cubeRender = (function ($) {
         });
     };
 
-    let touching = function (e) {
-        let point = e.changedTouches[0],
+    var touching = function (e) {
+        var point = e.changedTouches[0],
             $this = $(this);
-        let changeX = point.clientX - parseFloat($this.attr('strX')),
+        var changeX = point.clientX - parseFloat($this.attr('strX')),
             changeY = point.clientY - parseFloat($this.attr('strY'));
         if (Math.abs(changeX) > 10 || Math.abs(changeY) > 10) {
             $this.attr({
@@ -29,10 +29,10 @@ let cubeRender = (function ($) {
         }
     };
 
-    let touchEnd = function (e) {
-        let point = e.changedTouches[0],
+    var touchEnd = function (e) {
+        var point = e.changedTouches[0],
             $this = $(this);
-        let isMove = $this.attr('isMove'),
+        var isMove = $this.attr('isMove'),
             changeX = parseFloat($this.attr('changeX')),
             changeY = parseFloat($this.attr('changeY')),
             rotateX = parseFloat($this.attr('rotateX')),
@@ -63,24 +63,46 @@ let cubeRender = (function ($) {
 
             //=>每一个页面的点击操作
             $box.find('li').tap(function () {
+                var index = $(this).index();
+                switch(index){
+                    case 0:
+                        window.location.href = location.href + 'pro-intro.html';
+                        break;
+                    case 1:
+                        window.location.href = location.href + 'school-intro.html';
+                        break;
+                    case 2:
+                        window.location.href = location.href + 'article1.html';
+                        break;
+                    case 3:
+                        window.location.href = location.href + 'article2.html';
+                        break;
+                    case 4:
+                        window.location.href = location.href + 'teacher.html';
+                        break;
+                    case 5:
+                        window.location.href = location.href + 'touch-us.html';
+                        break;
+                }
+                // /pro-intro.html
                 // $cubeBox.css('display', 'none');
-                // let index = $(this).index();
+                // var index = $(this).index();
                 // detailRender.init(index);
             });
         }
     }
-})(Zepto);
+}
 
 /*--DETAIL--*/
-let detailRender = (function ($) {
-    let $detailBox = $('.detailBox'),
+var detailRender = (function ($) {
+    var $detailBox = $('.detailBox'),
         $cubeBox = $('.cubeBox'),
         $returnLink = $detailBox.find('.returnLink'),
         swipeExample = null;
-    let $makisuBox = $('#makisuBox');
+    var $makisuBox = $('#makisuBox');
 
-    let change = function (example) {
-        let {slides:slideAry, activeIndex}=example;
+    var change = function (example) {
+        var {slides:slideAry, activeIndex}=example;
 
         //=>PAGE1单独处理
         if (activeIndex === 0) {
@@ -100,7 +122,7 @@ let detailRender = (function ($) {
         }
 
         //=>给当前活动块设置ID,其它块移除ID
-        [].forEach.call(slideAry, (item, index)=> {
+        [].forEach.call(slideAry, function(item, index){
             if (index === activeIndex) {
                 item.id = 'page' + (activeIndex + 1);
                 return;
@@ -110,13 +132,14 @@ let detailRender = (function ($) {
     };
 
     return {
-        init: function (index = 0) {
+        init: function(argIndex){
+            var index = argIndex || 0;
             $detailBox.css('display', 'block');
 
             //=>INIT SWIPER
             if (!swipeExample) {
                 //=>RETURN
-                $returnLink.tap(()=> {
+                $returnLink.tap(function(){
                     $detailBox.css('display', 'none');
                     $cubeBox.css('display', 'block');
                 });
@@ -134,4 +157,4 @@ let detailRender = (function ($) {
     }
 })(Zepto);
 
-cubeRender.init();
+cubeRender().init();
