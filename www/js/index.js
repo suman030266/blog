@@ -1,11 +1,11 @@
 $(document).on('touchstart touchmove', function(e) {
     e.preventDefault();
 });
-function cubeRender() {
-    var $cubeBox = $('.cubeBox'),
+let cubeRender = (function ($) {
+    let $cubeBox = $('.cubeBox'),
         $box = $cubeBox.find('.box');
-    var touchBegin = function (e) {
-        var point = e.changedTouches[0];
+    let touchBegin = function (e) {
+        let point = e.changedTouches[0];
         $(this).attr({
             strX: point.clientX,
             strY: point.clientY,
@@ -15,10 +15,10 @@ function cubeRender() {
         });
     };
 
-    var touching = function (e) {
-        var point = e.changedTouches[0],
+    let touching = function (e) {
+        let point = e.changedTouches[0],
             $this = $(this);
-        var changeX = point.clientX - parseFloat($this.attr('strX')),
+        let changeX = point.clientX - parseFloat($this.attr('strX')),
             changeY = point.clientY - parseFloat($this.attr('strY'));
         if (Math.abs(changeX) > 10 || Math.abs(changeY) > 10) {
             $this.attr({
@@ -29,10 +29,10 @@ function cubeRender() {
         }
     };
 
-    var touchEnd = function (e) {
-        var point = e.changedTouches[0],
+    let touchEnd = function (e) {
+        let point = e.changedTouches[0],
             $this = $(this);
-        var isMove = $this.attr('isMove'),
+        let isMove = $this.attr('isMove'),
             changeX = parseFloat($this.attr('changeX')),
             changeY = parseFloat($this.attr('changeY')),
             rotateX = parseFloat($this.attr('rotateX')),
@@ -64,23 +64,23 @@ function cubeRender() {
             //=>每一个页面的点击操作
             $box.find('li').tap(function () {
                 // $cubeBox.css('display', 'none');
-                // var index = $(this).index();
+                // let index = $(this).index();
                 // detailRender.init(index);
             });
         }
     }
-}
+})(Zepto);
 
 /*--DETAIL--*/
-function detailRender() {
-    var $detailBox = $('.detailBox'),
+let detailRender = (function ($) {
+    let $detailBox = $('.detailBox'),
         $cubeBox = $('.cubeBox'),
         $returnLink = $detailBox.find('.returnLink'),
         swipeExample = null;
-    var $makisuBox = $('#makisuBox');
+    let $makisuBox = $('#makisuBox');
 
-    var change = function (example) {
-        var {slides:slideAry, activeIndex}=example;
+    let change = function (example) {
+        let {slides:slideAry, activeIndex}=example;
 
         //=>PAGE1单独处理
         if (activeIndex === 0) {
@@ -100,7 +100,7 @@ function detailRender() {
         }
 
         //=>给当前活动块设置ID,其它块移除ID
-        [].forEach.call(slideAry, function(item, index){
+        [].forEach.call(slideAry, (item, index)=> {
             if (index === activeIndex) {
                 item.id = 'page' + (activeIndex + 1);
                 return;
@@ -132,6 +132,6 @@ function detailRender() {
             swipeExample.slideTo(index, 0);
         }
     }
-}
+})(Zepto);
 
 cubeRender.init();
