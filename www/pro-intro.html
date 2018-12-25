@@ -65,7 +65,18 @@
             <!-- <video src="/video/music.mp4" controls="controls">
               您的浏览器无法播放此视频，请更新浏览器或系统。
             </video> -->
-            <video class="video-source"
+            <video id="video-box_v"
+              preload="auto" 
+              x5-video-player-type="h5" 
+              x5-video-player-fullscreen="true" 
+              x-webkit-airplay="true" 
+              playsinline="" 
+              webkit-playsinline="" 
+              src="/video/music.mp4" 
+              loop="">
+              您的浏览器无法播放此视频，请更新浏览器或系统。
+            </video>
+            <!-- <video class="video-source"
               src="/video/music.mp4"
               controls  
               style="object-fit:fill"  
@@ -76,8 +87,7 @@
               x5-video-orientation="h5" 
               x5-video-player-fullscreen="true" 
               preload="auto">
-              您的浏览器无法播放此视频，请更新浏览器或系统。
-            </video>
+            </video> -->
           </div>
           <ul>
             <li class="pro-item">
@@ -115,6 +125,7 @@
             <video controls="controls">
                 您的浏览器无法播放此视频，请更新浏览器或系统。
                 <source src="/video/wudao.mp4" type="video/mp4">
+                <!-- <source src="/video/wudao.mp4" type="video/ogg"> -->
             </video>
           </div>
           <ul>
