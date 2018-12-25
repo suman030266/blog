@@ -62,8 +62,21 @@
         </li>
         <li>
           <div class="video-info">
-            <video src="/video/music.mp4" controls="controls">
-                您的浏览器无法播放此视频，请更新浏览器或系统。
+            <!-- <video src="/video/music.mp4" controls="controls">
+              您的浏览器无法播放此视频，请更新浏览器或系统。
+            </video> -->
+            <video class="video-source"
+              src="/video/music.mp4"
+              controls  
+              style="object-fit:fill"  
+              webkit-playsinline="true"  
+              x-webkit-airplay="true"  
+              playsinline="true"  
+              x5-video-player-type="h5" 
+              x5-video-orientation="h5" 
+              x5-video-player-fullscreen="true" 
+              preload="auto">
+              您的浏览器无法播放此视频，请更新浏览器或系统。
             </video>
           </div>
           <ul>
