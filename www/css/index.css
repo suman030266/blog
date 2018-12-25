@@ -4392,12 +4392,10 @@ html,body {
   padding: 0 .34rem;
 }
 .pro-intro-container .video-info{
-  height: 5.4rem;
   width: 100%;
 }
-.pro-intro-container .video-info img{
+.pro-intro-container .video-info video{
   width: 100%;
-  height: 100%;
 }
 .pro-intro-container .tab-btn{
   text-align: center;
